@@ -13,7 +13,6 @@ import java.util.Map;
 @Controller
 public class UsrArticleController {
 
-
     int articleLastId;
     private List<Article> articles;
 
@@ -25,32 +24,63 @@ public class UsrArticleController {
     }
     private void makeTestData(){
         for(int i = 1; i <= 10; i++){
-            int id = articleLastId + 1;
             String title = "제목" + i;
             String body = "내용" + i;
-            Article article = new Article(id, title, body);
 
-            articles.add(article);
-            articleLastId = id;
+            witeArticle(title,body);
         }
+    }
+
+
+    private Article witeArticle(String title, String body) {
+        int id = articleLastId + 1;
+        Article article = new Article(id, title, body);
+        articles.add(article);
+        articleLastId = id;
+
+        return article;
+    }
+    private void deleteArticle(int id) {
+        Article article = getArticle(id);
+        articles.remove(article);
+    }
+
+    private Article getArticle(int id) {
+        for ( Article article : articles ){
+            if(article.getId() == id){
+                return article;
+            }
+        }
+        return null;
     }
 
     @RequestMapping("/user/article/doAdd")
     @ResponseBody
     public Article doAdd(String title, String body){
-        int id = articleLastId + 1;
-        Article article = new Article(id,title,body);
 
-        articles.add(article);
-
-        articleLastId = id;
+        Article article = witeArticle(title, body);
 
         return article;
     }
-
     @RequestMapping("/user/article/getArticles")
     @ResponseBody
     public List<Article> getArticles(){
         return articles;
     }
+    @RequestMapping("/user/article/doDelete")
+    @ResponseBody
+    public String doDelete(int id){
+        Article article = getArticle(id);
+
+        if( article == null ){
+            return id + "번 게시물이 존재하지 않습니다.";
+        }
+
+        deleteArticle(id);
+        return id + "번 게시물을 삭제하였습니다.";
+
+    }
+
+
+
 }
