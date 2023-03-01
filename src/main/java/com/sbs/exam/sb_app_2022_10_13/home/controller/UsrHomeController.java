@@ -4,6 +4,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import java.util.HashMap;
+import java.util.Map;
+
 @Controller
 public class UsrHomeController {
     private int count;
@@ -30,17 +33,52 @@ public class UsrHomeController {
         return "또 만나요.ㅎㅎㅎㅎ";
     }
 
-    @RequestMapping("/user/home/main4")
+    @RequestMapping("/user/home/getCount")
     @ResponseBody
-    public int showMain4(){
+    public int getCount(){
         count++;
         return count;
     }
 
-    @RequestMapping("/user/home/main5")
+    @RequestMapping("/user/home/getString")
     @ResponseBody
-    public String showMain5(){
-        count = 0;
-        return "count의 값이 0으로 초기화 되었습니다.";
+    public String getString(){
+        return "HI";
+    }
+
+    @RequestMapping("/user/home/getInt")
+    @ResponseBody
+    public int getInt(){
+        return 10;
+    }
+
+    @RequestMapping("/user/home/getFloat")
+    @ResponseBody
+    public float getFloat(){
+        return 10.5f;
+    }
+
+    @RequestMapping("/user/home/getBoolean")
+    @ResponseBody
+    public Boolean getBoolean(){
+        return true;
+    }
+
+    @RequestMapping("/user/home/getMap")
+    @ResponseBody
+    public Map<String, Object> getMap(){
+        Map<String, Object> map = new HashMap<>();
+        map.put("철수나이",22);
+        map.put("영희나이",21);
+        return map;
+    }
+
+
+
+    @RequestMapping("/user/home/doSetCount")
+    @ResponseBody
+    public String doSetCount(int count){
+        this.count = 0;
+        return "count의 값이" + this.count + "으로 초기화 되었습니다.";
     }
 }
