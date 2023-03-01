@@ -40,9 +40,17 @@ public class UsrArticleController {
 
         return article;
     }
+
     private void deleteArticle(int id) {
         Article article = getArticle(id);
         articles.remove(article);
+    }
+
+    private void ModifyArticle(int id, String title,String body) {
+        Article article = getArticle(id);
+
+        article.setTitle(title);
+        article.setBody(body);
     }
 
     private Article getArticle(int id) {
@@ -78,6 +86,19 @@ public class UsrArticleController {
 
         deleteArticle(id);
         return id + "번 게시물을 삭제하였습니다.";
+    }
+
+    @RequestMapping("/user/article/doModify")
+    @ResponseBody
+    public String doModify(int id, String title, String body){
+        Article article = getArticle(id);
+
+        if( article == null ){
+            return id + "번 게시물이 존재하지 않습니다.";
+        }
+
+        ModifyArticle(id, title, body);
+        return id + "번 게시물을 수정하였습니다.";
 
     }
 
