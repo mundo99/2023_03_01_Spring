@@ -1,12 +1,10 @@
 package com.sbs.exam.sb_app_2022_10_13.article.service;
 
-import com.sbs.exam.sb_app_2022_10_13.article.controller.UsrArticleController;
 import com.sbs.exam.sb_app_2022_10_13.article.repository.ArticleRepository;
 import com.sbs.exam.sb_app_2022_10_13.article.vo.Article;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -36,7 +34,7 @@ public class ArticleService {
     }
 
     public void ModifyArticle(int id, String title, String body) {
-        articleRepository.ModifyArticle(id, title, body);
+        articleRepository.modifyArticle(id, title, body);
     }
 }
 
