@@ -17,7 +17,7 @@ public class UsrMemberController {
     @Autowired
     private MemberService memberService;
 
-
+//
     @RequestMapping("/usr/member/doJoin")
     @ResponseBody
     public Object doJoin(String loginId, String loginPw, String name, String nickname,
