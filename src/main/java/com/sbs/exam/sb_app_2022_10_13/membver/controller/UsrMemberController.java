@@ -17,11 +17,11 @@ public class UsrMemberController {
     private MemberService memberService;
 
 
-    @RequestMapping("/user/article/doJoin")
+    @RequestMapping("/usr/member/doJoin")
     @ResponseBody
-    public String doJoin(String loginId, String loginPw, String name,  String nikname,
+    public String doJoin(String loginId, String loginPw, String name,  String nickname,
                          String cellphoneNo, String email){
-        memberService.join( loginId,  loginPw,  name,   nikname, cellphoneNo,  email);
-        return "안녕하세요";
+        memberService.join( loginId,  loginPw,  name,   nickname, cellphoneNo,  email);
+        return "성공";
     }
 }
