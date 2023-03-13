@@ -53,5 +53,6 @@ public class UsrMemberController {
         Member member = memberService.getMemberById(id);
 
         return member;
+
     }
 }
